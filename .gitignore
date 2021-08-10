@@ -1,0 +1,38 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+# Default DataFlex pattern for all workspaces 
+####################################
+Migration.log
+
+AppSrc/*.dep
+AppSrc/*.dep
+AppSrc/*.fld
+AppSrc/*.pbg
+AppSrc/*.pdp
+AppSrc/*.pkd
+AppSrc/*.prp
+AppSrc/*.err
+
+Data/*.cch
+Data/*.log 
+Data/bkp/*
+
+DDSrc/*.bak
+
+IdeSrc/*.loc
+IdeSrc/*.dsk
+IdeSrc/*.mtd
+
+Programs/*.dbg 
+Programs/*.exe* 
+Programs/WebApp.log 
+
+# General for Web-Libraries (Remove for real web projects)
+AppHtml/CssThemes
+AppHtml/DfEngine
+AppHtml/tests
+
+
+# Specific for this workspace 
+*.bkp
+*.original

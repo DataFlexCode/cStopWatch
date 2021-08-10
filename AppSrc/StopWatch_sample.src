@@ -1,0 +1,69 @@
+﻿Use Windows.pkg
+Use cHtmlHelp.pkg
+Use cApplication.pkg
+Use cConnection.pkg
+Use cStopWatch.pkg 
+
+Object oHtmlHelp is a cHtmlHelp
+End_Object
+
+Object oApplication is a cApplication
+
+    Object oConnection is a cConnection
+        Use LoginEncryption.pkg
+        Use DatabaseLoginDialog.dg
+    End_Object
+
+End_Object
+
+Object oStopW is a cStopWatch
+End_Object
+
+Procedure DoSomething 
+    Sleep 30
+End_Procedure
+
+
+Procedure Test_StopWatch
+    Send Start of oStopW 
+    Send DoSomething 
+    Send Stop of oStopW
+    Showln "Run 1"    
+    Showln "Elapsed   : " (Elapsed(oStopW)) 
+    Showln "Elapesd ms: " (ElapsedMilliSeconds(oStopW))
+    Showln "Elapesd µs: " (ElapsedMicroSeconds(oStopW))      
+    
+    Showln 
+    Sleep 20
+    
+    
+    Send Start of oStopW
+    Send DoSomething
+    Send Stop of oStopW
+    
+    Showln "Run 2" 
+    Showln "Elapsed   : " (Elapsed(oStopW)) 
+    Showln "Elapesd ms: " (ElapsedMilliSeconds(oStopW))
+    Showln "Elapesd µs: " (ElapsedMicroSeconds(oStopW))      
+     
+End_Procedure
+
+Procedure Main 
+    Handle hoSW 
+    
+    Get Create (RefClass(cStopWatch)) to hoSW 
+    Send Start of hoSW
+    Send Test_StopWatch
+    
+    Showln ""
+    Showln "Main Elapsed   : " (Elapsed(hoSW))
+    Showln "Main Elapsed ms: " (ElapsedMilliSeconds(hoSW))
+    Showln "Main Elapsed µs: " (ElapsedMicroSeconds(hoSW))
+    Send Stop of hoSW
+    Send Destroy of hoSW 
+    
+End_Procedure
+
+
+Send Main
+InKey FieldIndex
